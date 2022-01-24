@@ -4,11 +4,14 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import loginImg from './../../assets/images/login.png';
 import google from './../../assets/images/google.png'
 import useAuth from '../../hooks/useAuth';
+import { useLocation } from 'react-router-dom';
 
 const Login = () => {
 
+    const location = useLocation();
+    const redirect = location?.state?.from?.pathname || '/home';
     const { AllContexts } = useAuth();
-    const { signInWithGoogle, user, error } = AllContexts;
+    const { signInWithGoogle, error } = AllContexts;
 
     return (
         <div className='mt-5 pt-5'>
@@ -20,7 +23,7 @@ const Login = () => {
                                 <h2>Login</h2>
                                 <h5>Welcome back!</h5>
                                 <p className='text-danger'>{error}</p>
-                                <Button onClick={signInWithGoogle} className='my-4 w-75' variant="outline-danger">
+                                <Button onClick={() => signInWithGoogle(redirect)} className='my-4 w-75' variant="outline-danger">
                                     <div className='login-btn'>
                                         <img className='google-img' src={google} alt="" />
                                         Sign in with Google
