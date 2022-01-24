@@ -1,0 +1,52 @@
+
+.banner{
+    max-height: 500px;
+    overflow: hidden;
+}
+img.card-img {
+    opacity: 0.5;
+}
+.banner_overlay{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 300px;
+}
+
+/* slider */
+.slider_section{
+    margin: 30px 0;
+}
+.slider_section img{
+    max-height: 500px;
+}
+.slider_section p{
+    color: gray !important;
+}
+
+/* tour booking form  */
+.booking_form{
+    color: #f8f8f8;
+    padding: 30px;
+    margin-left: 20px;
+    border-radius: 5px;
+    background: rgb(240,88,66);
+    background: linear-gradient(90deg, rgba(240,88,66,1) 0%, rgba(234,51,72,1) 100%);
+}
+.booking_form input.form-control {
+    background: none;
+    color: white !important;
+    margin: 20px 0px;
+}
+.single_input_field::-webkit-input-placeholder{
+    color: white !important;
+}
+.single_input_field:focus{
+    background: rgb(240,88,66);
+    background: linear-gradient(90deg, rgba(240,88,66,1) 0%, rgba(234,51,72,1) 100%);
+}
+.submit_btn{
+    width: 100%;
+    border: none;
+    padding: 10px;
+}

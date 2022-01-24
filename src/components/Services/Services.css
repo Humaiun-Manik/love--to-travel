@@ -1,0 +1,23 @@
+#service{
+    padding-top: 100px;
+}
+.service-detail{
+    border-radius: 5px;
+    box-shadow: 0px 0px 28px 7px rgba(227,220,220,0.5);
+    -webkit-box-shadow: 0px 0px 28px 7px rgba(227,220,220,0.5);
+    -moz-box-shadow: 0px 0px 28px 7px rgba(227,220,220,0.5);
+}
+.icon span{
+    font-size: 25px;
+    color: #f8f8f8;
+    padding: 25px;
+    border-radius: 50%;
+    background: rgb(240,88,66);
+    background: linear-gradient(90deg, rgba(240,88,66,1) 0%, rgba(234,51,72,1) 100%);
+}
+.service-detail h5{
+    margin-top: 40px;
+}
+.service-detail p{
+    color: gray;
+}
