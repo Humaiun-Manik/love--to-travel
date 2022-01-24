@@ -14,10 +14,8 @@ const Contact = () => {
                         <span>Contact Us</span>
                         <h1>If You Have Any Question <p>Drop A Message</p></h1>
                     </div>
-                </Slide>
-                <Row>
-                    <Col md={7}>
-                        <Slide left>
+                    <Row>
+                        <Col md={7}>
                             <Form>
                                 <Row>
                                     <Col sm={12} md={6}>
@@ -39,23 +37,23 @@ const Contact = () => {
                                 </Form.Group>
                                 <button className='send_btn' type='submit'>Send Message</button>
                             </Form>
-                        </Slide>
-                    </Col>
-                    <Col md={5}>
-                        <div className='contact_info'>
-                            <span><FontAwesomeIcon icon={faMapMarkerAlt} /></span>
-                            <p>Mohammadpur, Dhaka, <br />Bangladesh</p>
-                        </div>
-                        <div className='contact_info'>
-                            <span><FontAwesomeIcon icon={faPhone} /></span>
-                            <p>(+880) 1774446071<br />(+880) 1374541706</p>
-                        </div>
-                        <div className='contact_info'>
-                            <span><FontAwesomeIcon icon={faAt} /></span>
-                            <p>help@lovetotravel.com <br />info@lovetotravel.com</p>
-                        </div>
-                    </Col>
-                </Row>
+                        </Col>
+                        <Col md={5}>
+                            <div className='contact_info'>
+                                <span><FontAwesomeIcon icon={faMapMarkerAlt} /></span>
+                                <p>Mohammadpur, Dhaka, <br />Bangladesh</p>
+                            </div>
+                            <div className='contact_info'>
+                                <span><FontAwesomeIcon icon={faPhone} /></span>
+                                <p>(+880) 1774446071<br />(+880) 1374541706</p>
+                            </div>
+                            <div className='contact_info'>
+                                <span><FontAwesomeIcon icon={faAt} /></span>
+                                <p>help@lovetotravel.com <br />info@lovetotravel.com</p>
+                            </div>
+                        </Col>
+                    </Row>
+                </Slide>
             </Container>
         </div>
     );
