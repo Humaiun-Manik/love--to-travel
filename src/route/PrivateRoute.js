@@ -17,7 +17,7 @@ const PrivateRoute = ({ children }) => {
                 </Spinner>
             </div>
         );
-    }
+    };
 
     return user.displayName ? children : <Navigate to="/login" state={{ from: location }} replace />;
 

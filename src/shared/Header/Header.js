@@ -33,20 +33,18 @@ const Header = () => {
                             <Nav.Link as={HashLink} to="/home#package">Package</Nav.Link>
                             <Nav.Link as={HashLink} to="/home#top-deals">TopDeals</Nav.Link>
                             <Nav.Link as={HashLink} to="/home#gallery">Gallery</Nav.Link>
+                            <Nav.Link as={Link} to="/order">MyOrder</Nav.Link>
                             {
                                 !user?.displayName ? (
                                     <Nav.Link className='login_btn' as={Link} to="/login">LOGIN</Nav.Link>
                                 ) : (
-                                    <>
-                                        <Nav.Link as={Link} to="/order">MyOrder</Nav.Link>
-                                        <NavDropdown className='dropdown-item' title={<img src={user.photoURL} alt="" />}>
-                                            <div className='text-center'>
-                                                <h6>{user?.displayName}</h6>
-                                                <p>{user.email}</p>
-                                                <Button onClick={logOut} variant="danger">Log Out</Button>
-                                            </div>
-                                        </NavDropdown>
-                                    </>
+                                    <NavDropdown className='dropdown-item' title={<img src={user.photoURL} alt="" />}>
+                                        <div className='text-center'>
+                                            <h6>{user?.displayName}</h6>
+                                            <p>{user.email}</p>
+                                            <Button onClick={logOut} variant="danger">Log Out</Button>
+                                        </div>
+                                    </NavDropdown>
                                 )
                             }
 

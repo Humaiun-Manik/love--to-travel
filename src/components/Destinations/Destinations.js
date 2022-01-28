@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Nav, Row } from 'react-bootstrap';
 import { Slide } from 'react-reveal';
 import './Destinations.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
@@ -11,10 +11,10 @@ const Destinations = () => {
     const [destinations, setDestinations] = useState([]);
 
     useEffect(() => {
-        fetch('./destinations.json')
+        fetch('https://morning-retreat-19009.herokuapp.com/destinations')
             .then(res => res.json())
             .then(data => setDestinations(data))
-    }, [])
+    }, []);
 
     return (
         <>

@@ -18,7 +18,11 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="home" element={<Home />} />
         <Route path="login" element={<Login />} />
-        <Route path="order" element={<MyOrder />} />
+        <Route path="order" element={
+          <PrivateRoute>
+            <MyOrder />
+          </PrivateRoute>
+        } />
         <Route path="package-detail/:id" element={
           <PrivateRoute>
             <PackDetails />

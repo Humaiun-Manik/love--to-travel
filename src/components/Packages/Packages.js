@@ -3,7 +3,7 @@ import './Packages.css';
 import { Button, Card, Col, Container, Nav, Row, Spinner } from 'react-bootstrap';
 import { Slide } from 'react-reveal';
 import useAuth from '../../hooks/useAuth';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as fullStar } from '@fortawesome/free-solid-svg-icons';
 import { faClock, faStar as emptyStar } from '@fortawesome/free-regular-svg-icons';
 import Rating from 'react-rating';

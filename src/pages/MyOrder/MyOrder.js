@@ -1,19 +1,19 @@
 import React from 'react';
 import './MyOrder.css';
-import { Button, Col, Container, Nav, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import useAuth from '../../hooks/useAuth';
 import Rating from 'react-rating';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as fullStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as emptyStar } from '@fortawesome/free-regular-svg-icons';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 
 const MyOrder = () => {
 
     const { selectedTour, setSelectedTour, AllContexts, remove } = useAuth();
-    console.log(selectedTour);
     const { user } = AllContexts;
+    const { uid } = user;
     const totalCost = selectedTour.reduce((total, tour) => total + tour.price, 0);
 
     return (
@@ -63,9 +63,17 @@ const MyOrder = () => {
                             <h4>Total {selectedTour.length} tour selected</h4>
                             <h6>Total Price: {totalCost.toFixed(2)} $</h6>
                             <Button onClick={() => {
-                                alert('Thanks for booking');
-                                setSelectedTour([]);
-                            }} className='book_btn w-75'>Book Now</Button>
+                                fetch(`https://morning-retreat-19009.herokuapp.com/booking/${uid}`, {
+                                    method: 'delete',
+                                })
+                                    .then(res => res.json())
+                                    .then(data => {
+                                        if (data.deletedCount > 0) {
+                                            alert('Thanks for booking');
+                                            setSelectedTour([]);
+                                        };
+                                    });
+                            }} className='book_btn w-75'>Booking</Button>
                             <p className='mt-3'>or <Link as={HashLink} to="/home#package">Continue Shopping →</Link></p>
                         </div>
 

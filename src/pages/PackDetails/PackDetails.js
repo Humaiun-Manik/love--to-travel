@@ -13,21 +13,21 @@ const PackDetails = () => {
     const { addToMyOrder } = useAuth();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/tours/${id}`)
+        fetch(`https://morning-retreat-19009.herokuapp.com/tours/${id}`)
             .then(res => res.json())
             .then(data => {
                 if (data._id) {
                     setTour(data);
                 } else {
                     alert('something went wrong');
-                }
-            })
-    }, [])
+                };
+            });
+    }, []);
 
     const submitInfo = (e) => {
         e.preventDefault();
         alert('Fill up Successfully')
-    }
+    };
 
     return (
         <>
@@ -117,5 +117,5 @@ const PackDetails = () => {
             }
         </>
     );
-}
+};
 export default PackDetails;

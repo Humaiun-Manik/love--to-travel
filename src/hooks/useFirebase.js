@@ -38,7 +38,7 @@ const useFirebase = () => {
             setLoading(false);
         });
         return () => unsubscribe;
-    }, [])
+    }, []);
 
     // google sign in
     const signInWithGoogle = (pathname) => {
@@ -51,7 +51,7 @@ const useFirebase = () => {
             }).catch((error) => {
                 setError(error.message);
             });
-    }
+    };
 
     // signOut 
     const logOut = () => {
@@ -60,7 +60,7 @@ const useFirebase = () => {
         }).catch((error) => {
             setError(error.message);
         });
-    }
+    };
 
     return {
         signInWithGoogle,

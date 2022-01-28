@@ -8,13 +8,13 @@ const useOrder = () => {
     const [selectedTour, setSelectedTour] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/orders/${uid}`)
+        fetch(`https://morning-retreat-19009.herokuapp.com/orders/${uid}`)
             .then(res => res.json())
             .then(data => {
                 if (data.length) {
                     setSelectedTour(data);
-                }
-            })
+                };
+            });
     }, [uid]);
 
     const addToMyOrder = (tour) => {
@@ -27,7 +27,7 @@ const useOrder = () => {
         if (isHave) {
             alert('Tour has been selected');
         } else {
-            fetch('http://localhost:5000/tour/add', {
+            fetch('https://morning-retreat-19009.herokuapp.com/tour/add', {
                 method: 'post',
                 headers: { "content-type": "application/json" },
                 body: JSON.stringify(tour)
@@ -37,26 +37,29 @@ const useOrder = () => {
                     if (data.insertedId) {
                         const newSelection = [...selectedTour, tour];
                         setSelectedTour(newSelection);
-                    }
-                })
-        }
-    }
+                    };
+                });
+        };
+    };
 
     const remove = (id) => {
 
-        fetch(`http://localhost:5000/delete/${id}`, {
-            method: "delete",
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.deletedCount === 1) {
-                    const selectAfterRemove = selectedTour.filter(tour => tour._id !== id);
-                    setSelectedTour(selectAfterRemove);
-                } else {
-                    alert('Something went wrong');
-                }
+        const confirmation = window.confirm('Are you sure to delete!!')
+        if (confirmation) {
+            fetch(`https://morning-retreat-19009.herokuapp.com/delete/${id}`, {
+                method: "delete",
             })
-    }
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount === 1) {
+                        const selectAfterRemove = selectedTour.filter(tour => tour._id !== id);
+                        setSelectedTour(selectAfterRemove);
+                    } else {
+                        alert('Something went wrong!');
+                    };
+                });
+        }
+    };
 
     return { addToMyOrder, selectedTour, setSelectedTour, remove };
 };
