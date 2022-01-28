@@ -5,7 +5,7 @@ const usePackages = () => {
     const [packages, setPackages] = useState([]);
 
     useEffect(() => {
-        fetch('/Packages.json')
+        fetch('http://localhost:5000/tours')
             .then(res => res.json())
             .then(data => setPackages(data));
     }, [])

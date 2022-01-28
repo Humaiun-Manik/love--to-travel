@@ -1,6 +1,6 @@
 import React from 'react';
 import './Packages.css';
-import { Button, Card, Col, Container, Nav, Row } from 'react-bootstrap';
+import { Button, Card, Col, Container, Nav, Row, Spinner } from 'react-bootstrap';
 import { Slide } from 'react-reveal';
 import useAuth from '../../hooks/useAuth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -23,8 +23,8 @@ const Packages = () => {
                     </div>
                     <div>
                         <Row xs={1} md={3} className="g-4">
-                            {packages.map(pack => <Col>
-                                <Card className='single_package' key={pack.id}>
+                            {packages.map(pack => <Col key={pack._id}>
+                                <Card className='single_package'>
                                     <Card.Img className='img-fluid pack_img' variant="top" src={pack.photos.thumbnail} />
                                     <Card.Body className='p-4 pb-3'>
                                         <Card.Title className='package_hover w-100'>
@@ -48,7 +48,7 @@ const Packages = () => {
                                             <small className="duration">
                                                 <FontAwesomeIcon className='text-danger me-2' icon={faClock} /> {pack.duration}
                                             </small>
-                                            <Nav.Link className='p-0' as={Link} to={`/package-detail/${pack.id}`}><Button className='book_btn'>Book Now
+                                            <Nav.Link className='p-0' as={Link} to={`/package-detail/${pack._id}`}><Button className='book_btn'>Book Now
                                             </Button>
                                             </Nav.Link>
                                         </Card.Text>

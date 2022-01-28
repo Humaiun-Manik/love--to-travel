@@ -3,6 +3,7 @@ import './App.css';
 import AuthProvider from './contexts/AuthProvider';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
+import MyOrder from './pages/MyOrder/MyOrder';
 import Notfound from './pages/Notfound/Notfound';
 import PackDetails from './pages/PackDetails/PackDetails';
 import PrivateRoute from './route/PrivateRoute';
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="home" element={<Home />} />
         <Route path="login" element={<Login />} />
+        <Route path="order" element={<MyOrder />} />
         <Route path="package-detail/:id" element={
           <PrivateRoute>
             <PackDetails />

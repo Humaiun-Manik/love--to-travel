@@ -50,3 +50,14 @@ img.card-img {
     border: none;
     padding: 10px;
 }
+.not_found{
+    padding: 150px;
+}
+.tour-booking{
+    display: flex;
+    justify-content: space-between;
+}
+.booking_btn{
+    padding: 10px 30px !important;
+    font-size: 18px !important;
+}

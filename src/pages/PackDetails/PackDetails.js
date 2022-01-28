@@ -1,26 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './PackDetails.css';
 import { Button, Card, Carousel, Col, Container, Form, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import useAuth from './../../hooks/useAuth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
+import useAuth from '../../hooks/useAuth';
 
 const PackDetails = () => {
 
+    const [tour, setTour] = useState({});
     const { id } = useParams();
-    const { packages } = useAuth();
-    const matchingPackage = packages.find(pack => pack.id === Number(id));
-    // const { photos, title, desc, price, rating, ratingCount, duration } = matchingPackage;
+    const { addToMyOrder } = useAuth();
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/tours/${id}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data._id) {
+                    setTour(data);
+                } else {
+                    alert('something went wrong');
+                }
+            })
+    }, [])
+
+    const submitInfo = (e) => {
+        e.preventDefault();
+        alert('Fill up Successfully')
+    }
 
     return (
         <>
             {
-                matchingPackage?.title ? (
-                    <div>
+                tour?.title ? (
+                    <div key={tour._id}>
                         <div className="banner">
                             <Card className="bg-dark text-white banner">
-                                <Card.Img src={matchingPackage?.photos?.thumbnail} alt="Card image" />
+                                <Card.Img src={tour?.photos?.thumbnail} alt="Card image" />
                                 <Card.ImgOverlay className='banner_overlay'>
                                     <Card.Title><h1>Tour Details</h1></Card.Title>
                                 </Card.ImgOverlay>
@@ -31,36 +47,42 @@ const PackDetails = () => {
                                 <Row>
                                     <Col sm={12} md={8}>
                                         <p className='text-danger mb-2 me-2 duration'>
-                                            <FontAwesomeIcon icon={faClock} /> {matchingPackage.duration}
+                                            <FontAwesomeIcon icon={faClock} /> {tour.duration}
                                         </p>
-                                        <h4>Special {matchingPackage.title} Tour</h4>
+                                        <h4>Special {tour.title} Tour</h4>
                                         {/* Carousels */}
                                         <div className='slider_section'>
                                             <Carousel>
                                                 <Carousel.Item>
                                                     <img
                                                         className="d-block w-100"
-                                                        src={matchingPackage?.photos?.img1}
+                                                        src={tour?.photos?.img1}
                                                         alt="First slide"
                                                     />
                                                 </Carousel.Item>
                                                 <Carousel.Item>
                                                     <img
                                                         className="d-block w-100"
-                                                        src={matchingPackage?.photos?.img2}
+                                                        src={tour?.photos?.img2}
                                                         alt="First slide"
                                                     />
                                                 </Carousel.Item>
                                                 <Carousel.Item>
                                                     <img
                                                         className="d-block w-100"
-                                                        src={matchingPackage?.photos?.img3}
+                                                        src={tour?.photos?.img3}
                                                         alt="First slide"
                                                     />
                                                 </Carousel.Item>
                                             </Carousel>
                                         </div>
-                                        <p className='text-secondary'>{matchingPackage?.desc}</p>
+                                        <p className='text-secondary'>{tour?.desc}</p>
+                                        <hr className='my-5' />
+                                        <div className='tour-booking'>
+                                            <h1>$ {tour.price}</h1>
+                                            <Button onClick={() => addToMyOrder(tour)}
+                                                className='booking_btn' variant="secondary">BOOK NOW</Button>
+                                        </div>
                                     </Col>
                                     <Col sm={12} md={4}>
                                         <div className='booking_form'>
@@ -81,7 +103,9 @@ const PackDetails = () => {
                                                 <Form.Group>
                                                     <Form.Control className='single_input_field' type="text" placeholder="No of Person" required />
                                                 </Form.Group>
-                                                <button className='submit_btn' type='submit'>Submit</button>
+                                                <button
+                                                    className='submit_btn' type='submit'
+                                                    onClick={submitInfo}>Submit</button>
                                             </Form>
                                         </div>
                                     </Col>
@@ -89,7 +113,7 @@ const PackDetails = () => {
                             </Container>
                         </div>
                     </div>
-                ) : (<h1>No Package Found</h1>)
+                ) : (<h1 className='not_found text-center'>No Package Found</h1>)
             }
         </>
     );
